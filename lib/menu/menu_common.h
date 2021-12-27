@@ -14,9 +14,11 @@
 
 #include "i_renderer.h"
 #include "renderers/printf_text_renderer_t.h"
+#include "renderers/printf_text_renderer_with_value_t.h"
 
 #define ACTION(name) void name(action_t* action, i_action_metadata* metadata)
-#define MENU_TEXT(value) (new printf_text_renderer_t(value))
+#define MENU_TEXT(text) (new printf_text_renderer_t(text))
+#define MENU_TEXT_WITH_VALUE(type, text, value) (new printf_text_renderer_with_value_t<type>(text, &value))
 
 #define MENU_SUBMENU_OPTION(title, submenu) (new menu_option_t(title))->add_listener((action_t*) submenu)
 #define MENU_SIMPLE_OPTION(title, listener, type) (new menu_option_t(title))->add_listener(new action_t(listener, type))

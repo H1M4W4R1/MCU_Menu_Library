@@ -8,6 +8,14 @@
 
 #define PC_DEBUG_MODE
 
+#ifdef PC_DEBUG_MODE
+#ifdef WIN32
+
+#include <conio.h>
+
+#endif
+#endif
+
 menu_t* menu_t::add_option(menu_option_t* option) {
     // Check if option exists then add it
     if(option != nullptr)
@@ -27,21 +35,25 @@ void menu_t::render(int start, int count, int selected) {
 
     // Ask for action
 #ifdef PC_DEBUG_MODE
-    char num;
+    int num;
 
-    std::cout << "Please select an option:" << std::endl;
-    std::cin >> num;
+    num = getch();
 
-    if(num == '+')
+#if WIN32
+    system("cls");
+#endif
+    if(num == '2')
         menu_common_t::next();
-    if(num == '-')
+    else if(num == '8')
         menu_common_t::previous();
-    if(num == 's')
+    else if(num == 's' || num == 13)
         menu_common_t::execute(ON_PRESS, nullptr);
-    if(num == ']')
+    else if(num == '+')
         menu_common_t::execute(ON_INCREASE, nullptr);
-    if(num == '[')
+    else if(num == '-')
         menu_common_t::execute(ON_DECREASE, nullptr);
+    else
+        menu_common_t::refresh();
 #endif
 }
 
