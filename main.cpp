@@ -3,24 +3,29 @@
 
 int volume = 0;
 
-void on_menu_select_1(action_t* action, i_action_metadata* metadata) {
+ACTION(on_menu_select_1)
+{
     std::cout << "Selected option 1! \n" << std::endl;
 }
 
-void on_menu_select_2(action_t* action, i_action_metadata* metadata){
+ACTION(on_menu_select_2)
+{
     std::cout << "Selected option 2! \n" << std::endl;
 }
 
-void funny_text(action_t* action, i_action_metadata* metadata){
+ACTION(funny_text)
+{
     std::cout << "***** *** \n" << std::endl;
 }
 
-void on_value_changed(action_t* action, i_action_metadata* metadata){
+ACTION(on_value_changed)
+{
     std::cout << "Value has been changed! \n" << std::endl;
 }
 
 
-ACTION(on_increase){
+ACTION(on_increase)
+{
     volume++;
     std::cout << "Volume increased to: " << volume << std::endl;
 }
