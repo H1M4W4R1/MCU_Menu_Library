@@ -1,54 +1,53 @@
 #include <iostream>
 #include "lib/menu/menu_common.h"
 
-int volume = 0;
+int targetTemperature = 0;
 
-ACTION(on_menu_select_1)
+
+ACTION(preheat_pla)
 {
-    std::cout << "Selected option 1! \n" << std::endl;
+    targetTemperature = 210;
 }
 
-ACTION(on_menu_select_2)
+ACTION(preheat_abs)
 {
-    std::cout << "Selected option 2! \n" << std::endl;
+    targetTemperature = 230;
 }
 
-ACTION(funny_text)
+ACTION(preheat_petg)
 {
-    std::cout << "***** *** \n" << std::endl;
+    targetTemperature = 240;
 }
 
-ACTION(on_value_changed)
+ACTION(preheat_off)
 {
-    std::cout << "Value has been changed! \n" << std::endl;
+    targetTemperature = 0;
 }
 
-
-ACTION(on_increase)
+ACTION(temperature_up)
 {
-    volume++;
+    targetTemperature += 5;
 }
 
-ACTION(on_decrease)
+ACTION(temperature_down)
 {
-    volume--;
+    targetTemperature -= 5;
 }
 
-menu_t* menu2  = (new menu_t())
-        ->add_option(MENU_SIMPLE_OPTION("Tell me a joke", funny_text, action_type_t::ON_PRESS))
-        ->add_option(MENU_CHANGE_OPTION("Do Change", on_value_changed))
-        ->add_option(MENU_BACK_OPTION("Back");
+menu_t* preheat  = (new menu_t())
+        ->add_option(MENU_BACK_OPTION("Back")
+        ->add_option(MENU_SIMPLE_OPTION("Preheat OFF", preheat_off, action_type_t::ON_PRESS))
+        ->add_option(MENU_SIMPLE_OPTION("Preheat PLA", preheat_pla, action_type_t::ON_PRESS))
+        ->add_option(MENU_SIMPLE_OPTION("Preheat ABS", preheat_abs, action_type_t::ON_PRESS))
+        ->add_option(MENU_SIMPLE_OPTION("Preheat PETG", preheat_petg, action_type_t::ON_PRESS));
 
 menu_t* menu1 = (new menu_t())
-        ->add_option(MENU_SIMPLE_OPTION("Select option 2", on_menu_select_2, action_type_t::ON_PRESS))
-        ->add_option(MENU_SUBMENU_OPTION("More...", new submenu_action_t(menu2)))
-        ->add_option(MENU_BACK_OPTION("Back");
+        ->add_option(MENU_BACK_OPTION("Back")
+        ->add_option(MENU_SUBMENU_OPTION("Preheat", preheat));
 
 menu_t* menu = (new menu_t())
-        ->add_option(MENU_SIMPLE_OPTION("Select option 1", on_menu_select_1, action_type_t::ON_PRESS))
-        ->add_option(MENU_INCREASE_DECREASE_OPTION(MENU_TEXT_WITH_VALUE(int, "Volume", volume), on_increase, on_decrease))
-        ->add_option(MENU_SUBMENU_OPTION("More...",
-                                         new submenu_action_t(menu1)));
+        ->add_option(MENU_INCREASE_DECREASE_OPTION(MENU_TEXT_WITH_INT("Target temperature", targetTemperature), temperature_up, temperature_down)) // Temperature
+        ->add_option(MENU_SUBMENU_OPTION("Settings...", menu1));
 
 
 int main() {

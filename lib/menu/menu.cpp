@@ -6,7 +6,6 @@
 #include "menu.h"
 #include "menu_common.h"
 
-#define PC_DEBUG_MODE
 
 #ifdef PC_DEBUG_MODE
 #ifdef WIN32

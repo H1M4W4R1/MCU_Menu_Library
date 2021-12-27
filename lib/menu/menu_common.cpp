@@ -44,6 +44,10 @@ void menu_common_t::next() {
 }
 
 void menu_common_t::previous() {
+
+    // Only if more than 1 option
+    if(available_options_count() <= 1) return;
+
     // Previous option
     current_option_index--;
 
@@ -69,6 +73,10 @@ void menu_common_t::refresh() {
 // Execute current option
 void menu_common_t::execute(action_type_t type, i_action_metadata* metadata) {
     path.back()->execute_option(current_option_index, type, metadata);
+}
+
+int menu_common_t::available_options_count() {
+    return path.back()->available_options_count();
 }
 
 
