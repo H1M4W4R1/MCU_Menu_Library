@@ -22,7 +22,7 @@ void menu_t::render(int start, int count, int selected) {
         if(q > options.size() - 1)
             break;
 
-        options[q]->render(selected == q);
+        options[q]->render(q, selected == q);
     }
 
     // Ask for action

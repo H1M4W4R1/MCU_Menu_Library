@@ -4,6 +4,7 @@
 
 #include "menu_option.h"
 #include "renderers/printf_text_renderer_t.h"
+#include "menu_common.h"
 
 menu_option_t* menu_option_t::add_listener(action_t *listener) {
     if(listener == nullptr) {
@@ -22,6 +23,8 @@ void menu_option_t::execute(action_type_t actionType, i_action_metadata *metadat
             listener->execute(metadata);
         }
     }
+
+    menu_common_t::refresh();
 }
 
 // Create new menu option
@@ -32,10 +35,10 @@ menu_option_t::menu_option_t(i_renderer* rendererPtr) {
     this->renderer = rendererPtr;
 }
 
-void menu_option_t::render(bool selected) {
+void menu_option_t::render(int index, bool selected) {
     if(renderer == nullptr)
         return;
-    renderer->render(selected);
+    renderer->render(index, selected);
 }
 
 menu_option_t::menu_option_t(const char* text) {

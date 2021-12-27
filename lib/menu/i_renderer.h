@@ -8,7 +8,7 @@
 
 class i_renderer {
 public:
-    virtual void render(bool selected) = 0; // Render this display item
+    virtual void render(int index, bool selected) = 0; // Render this display item
 };
 
 

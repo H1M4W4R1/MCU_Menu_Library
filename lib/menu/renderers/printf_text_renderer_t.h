@@ -13,7 +13,7 @@ private:
     char* text;
 
 public:
-    void render(bool selected) override;
+    void render(int index, bool selected) override;
     explicit printf_text_renderer_t(const char* text);
 };
 

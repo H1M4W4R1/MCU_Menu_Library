@@ -20,7 +20,7 @@ class menu_option_t {
         void execute(action_type_t actionType, i_action_metadata* metadata);
         explicit menu_option_t(i_renderer* rendererPtr);
         explicit menu_option_t(const char* text);
-        void render(bool selected);
+        void render(int index, bool selected);
 };
 
 
