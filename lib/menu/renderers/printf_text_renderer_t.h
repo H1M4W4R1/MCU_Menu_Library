@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include "../i_renderer.h"
 
-class printf_text_renderer_t : i_renderer {
+class printf_text_renderer_t : public i_renderer {
 private:
     char* text;
 

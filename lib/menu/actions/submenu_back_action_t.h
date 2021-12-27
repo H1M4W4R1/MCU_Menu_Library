@@ -8,7 +8,7 @@
 
 #include "../action.h"
 
-class submenu_back_action_t : action_t {
+class submenu_back_action_t : public action_t {
 public:
     submenu_back_action_t();
 };

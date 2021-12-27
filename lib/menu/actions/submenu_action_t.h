@@ -9,7 +9,7 @@
 #include "../action.h"
 #include "../menu.h"
 
-class submenu_action_t : action_t {
+class submenu_action_t : public action_t {
 private:
     menu_t *submenu;
 public:

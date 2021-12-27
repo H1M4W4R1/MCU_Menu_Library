@@ -12,7 +12,12 @@
 #include "actions/submenu_action_t.h"
 #include "actions/submenu_back_action_t.h"
 
+#include "i_renderer.h"
+#include "renderers/printf_text_renderer_t.h"
+
 #define ACTION(name) void name(action_t* action, i_action_metadata* metadata)
+#define MENU_TEXT(value) (new printf_text_renderer_t(value))
+
 #define MENU_SUBMENU_OPTION(title, submenu) (new menu_option_t(title))->add_listener((action_t*) submenu)
 #define MENU_SIMPLE_OPTION(title, listener, type) (new menu_option_t(title))->add_listener(new action_t(listener, type))
 #define MENU_INCREASE_DECREASE_OPTION(title, listener_increase, listener_decrease) (new menu_option_t(title))->add_listener(new action_t(listener_increase, action_type_t::ON_INCREASE))->add_listener(new action_t(listener_decrease, action_type_t::ON_DECREASE))

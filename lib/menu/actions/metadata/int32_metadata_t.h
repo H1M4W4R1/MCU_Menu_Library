@@ -9,7 +9,7 @@
 #include <cstdint>
 #include "../i_action_metadata.h"
 
-class int32_metadata_t : i_action_metadata {
+class int32_metadata_t : public i_action_metadata {
 private:
     int32_t value;
 public:

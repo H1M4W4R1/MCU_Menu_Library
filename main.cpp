@@ -32,7 +32,7 @@ ACTION(on_decrease)
 }
 
 menu_t* menu2  = (new menu_t())
-        ->add_option(MENU_SIMPLE_OPTION("Tell me a joke", funny_text, action_type_t::ON_PRESS))
+        ->add_option(MENU_SIMPLE_OPTION(MENU_TEXT("Tell me a joke"), funny_text, action_type_t::ON_PRESS))
         ->add_option(MENU_INCREASE_DECREASE_OPTION("Volume", on_increase, on_decrease))
         ->add_option(MENU_CHANGE_OPTION("Do Change", on_value_changed))
         ->add_option(MENU_BACK_OPTION("Back");
